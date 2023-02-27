@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP5_4</title>
+    <link rel="stylesheet" href="TP5_4css.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="parent">
+        <div>
+            <img src="508970.png" alt="" class="pic">
+            <h1 class="titre">Which Univ. do you want to study?</h1>
+        </div>
+        <div class="btn">
+            <input type="text" class="int" id="int1">
+            <button onclick="display()" class="btn1">   
+                Click me
+            </button>
+        </div>
+        <div class="flex" id="f">
+            
+        </div>
+    </div>
+
+    
+
+    <script>
+        let tous = document.getElementById('f');
+
+        function display(){
+            let country = document.getElementById('int1').value;
+
+            let arr = [];
+            let url = `http://universities.hipolabs.com/search?country=${country}`;
+            fetch(url).then(async (res)=>{
+                let data = await res.json();
+
+                data.forEach((university)=>{
+                    let name = university.name;
+                    let country = university.country;
+                    let code = university.alpha_two_code;
+                    let link = university.web_pages[0];
+                    
+                    arr += `
+                        <div class="block">
+                                <div class="ecole"><b>${name}</b></div>
+                                <br>
+                                <div class="pays">(${country} - ${code})</div>
+                                <br>
+                                <div class="ligne"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="monde">
+                                <path d="M15.75 8.25a.75.75 0 01.75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 11-.992-1.124A2.243 2.243 0 0015 9a.75.75 0 01.75-.75z" />
+                                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.575 15.6a8.25 8.25 0 009.348 4.425 1.966 1.966 0 00-1.84-1.275.983.983 0 01-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 012.328-.377L16.5 15h.628a2.25 2.25 0 011.983 1.186 8.25 8.25 0 00-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.575 15.6z" clip-rule="evenodd" />
+                                </svg>
+                                ${link}</div>         
+                        </div>
+                        `;
+                }  
+                );
+                tous.innerHTML = arr;  
+            })
+        }
+    </script>
+</body>
+</html>

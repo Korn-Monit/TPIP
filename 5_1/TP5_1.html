@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5_1</title>
+    <link rel="stylesheet" href="TP5_1style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="frame">
+        <span style='font-size:100px;' class="st">&#128512;</span>
+        <div class="title">
+            <h1 class="titre">Are you boring?</h1>
+        </div>
+        <button onclick="fetchNewActivity()" class="btn">Tell me what to do</button>
+        <div class="dis">
+            <!-- hidden attribute is used to hide an element from the webpage. When an element has the hidden attribute set, it is not displayed on the page, and the space it would have occupied is collapsed. -->
+            <div id="loading-text" hidden>Loading...</div>
+            <div>
+                <div class="int">
+                    <h3> 
+                        <b>Learn and play a new card game</b> 
+                    </h3>
+                </div>
+                <!-- <div id="activity-name">Activity</div> -->
+                <div id="type" class="ele">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                      </svg>
+                    Type:</div>
+                <div id="participants" class="ele">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      
+                    Participants:
+                </div>
+                <div id="price" class="ele">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Price:
+                </div>
+                <div id="link" class="ele">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                      </svg>
+                      
+                    Link:
+                </div>
+                <!-- <div id="key">Key</div> -->
+                <!-- <div id="accessibility">Accessibility</div> -->
+            </div>        
+        </div>
+    </div>
+
+    <script>
+
+        // function doingTask(){
+        //     //reject if there is an error
+        //     //resolve it there is no error
+        //     return new Promise((resolve, reject)=>{
+        //         console.log("I'm doing a task");
+        //         //wait 2s
+        //         //set Timeout function take two parameters which are function, time respectively
+        //         setTimeout(() => {
+        //             console.log("The task is processing....");
+        //             //The resolve function can be passed a value, which will be the resolved value of the promise. This value can be of any type, such as a number, string, object, or array. If you don't need to pass any value, you can call resolve() without any arguments.
+        //             resolve();
+        //         }, 2000);
+        //     })
+        // }
+       
+
+        // doingTask().then(()=>{
+        //     console.log("The task is done");
+        // });
+
+
+        const loadingTextEle = document.getElementById("loading-text");
+
+        // const activityNameEle = document.getElementById("activity-name");
+        const typeEle = document.getElementById("type");
+        const participantsEle = document.getElementById("participants");
+        const priceEle = document.getElementById("price");
+        const linkEle = document.getElementById("link");
+        // const keyEle = document.getElementById("key");
+        // const accessEle = document.getElementById("accessibility")
+
+
+
+        function fetchNewActivity(){
+            //display
+            loadingTextEle.hidden = false;
+            // activityNameEle.innerHTML = "";
+            typeEle.innerHTML="";
+            participantsEle.innerHTML = "";
+            priceEle.innerHTML = "";
+            linkEle.innerHTML = "";
+            // keyEle.innerHTML = "";
+            // accessEle.innerHTML = "";
+            
+            //The fetch() function is used to make HTTP requests to a server and retrieve data in JavaScript. It is commonly used to fetch data from APIs, which allows developers to access and manipulate data from remote servers. The fetch() function returns a Promise object that resolves to the server's response to the request, which can be processed further with the then() method.
+            fetch("https://www.boredapi.com/api/activity").then(async (res)=>{
+                //wait to retreive data from API 
+                //if data is retreived, it goes go the next line
+                let data = await res.json();
+                //hide
+                loadingTextEle.hidden = true;
+
+                // activityNameEle.innerHTML = data.activity;
+                typeEle.innerHTML = `               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                      </svg>
+                    Type:`+data.type;
+                participantsEle.innerHTML = `                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      
+                    Participants:`+data['participants'];
+                priceEle.innerHTML = `                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Price:`+data['price'];
+                linkEle.innerHTML = `                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="logo">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                      </svg>
+                      
+                    Link:  `+data.link;
+                // keyEle.innerHTML = data['key'];
+                // accessEle.innerHTML = data['accessibility'];
+            });
+
+            // fetch("https://www.boredapi.com/api/activity").then((res)=>{
+            //     res.json().then((data)=>{
+            //         loadingTextEle.hidden = true;
+            //         activityNameEle.innerHTML = data.activity;
+            //         typeEle.innerHTML = data.type;
+            //         participantsEle.innerHTML = data['participants'];
+            //         priceEle.innerHTML = data['price'];
+            //         linkEle.innerHTML = data.link;
+            //         keyEle.innerHTML = data['key'];
+            //         accessEle.innerHTML = data['accessibility'];
+            //     })
+            // })
+        }
+    </script>
+</body>
+</html>

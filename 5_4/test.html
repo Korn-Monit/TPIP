@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Universities in Cambodia</h1>
+    <ul id="university-list"></ul>
+
+    <script>
+      const universityList = document.getElementById('university-list');
+
+      fetch('http://universities.hipolabs.com/search?country=Cambodia')
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(university => {
+            const listItem = document.createElement('li');
+            listItem.innerText = university.name;
+            universityList.appendChild(listItem);
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    </script>
+  </body>
+</html>

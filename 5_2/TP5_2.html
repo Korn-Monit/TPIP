@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP5_2</title>
+    <link rel="stylesheet" href="TP5_2css.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Indie+Flower&family=Shantell+Sans:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="display">
+        <div class="header">
+            <span style='font-size:100px;' class="sticker">&#128512;</span>
+            <div class="titre">
+                <h1>I Know your <span class="col">Gender</span> </h1>
+            </div>
+            
+            <div class="int">
+                <input type="text" id="nom" placeholder="Tell me your name">
+                <button onclick="display()" class="btn">Guess</button>
+            </div>
+
+            <div class="diss">
+                <div hidden id="loading">Loading...</div>
+                <div id="pnom"> <span class="nomr"><b>Name</b> </span> </div>
+                <div id="dis"> <span class="g"> <b>Gender</b> </span></div>
+                <div id="probabilite"> <span class="pro"> <b>Probability</b></span> </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <script>
+        const loadingwp = document.getElementById("loading");
+
+        const displayEle = document.getElementById("dis");
+        const nomEle = document.getElementById("pnom");
+        const probabEle = document.getElementById("probabilite");
+
+        let name = document.getElementById('nom').value;
+        loadingwp.hidden = true;
+
+        function display(){
+            let name = document.getElementById('nom').value;
+            let url = `https://api.genderize.io/?name=${name}`;
+
+            loadingwp.hidden = false;
+            nomEle.innerHTML = "";
+            displayEle.innerHTML = "";
+            probabEle.innerHTML = "";
+            
+
+            fetch(url).then(async (res)=>{
+                loadingwp.hidden = true;
+                let data = await res.json();
+                
+
+                nomEle.innerHTML = `<div class="nomr"><b>${data.name}</b></div>`;
+                displayEle.innerHTML = `<div class="g"><b>${data.gender}</b></div>`;
+                probabEle.innerHTML = `<div class="pro"><b>${data.probability}</b></div>`;
+                
+            })
+        }
+    </script>
+</body>
+</html>
